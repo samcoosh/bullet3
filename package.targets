@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- general -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <!-- static libraries -->
+  <ItemDefinitionGroup Condition="'$(Platform)' == 'Win32' And ('$(PlatformToolset)' == 'v142') And '$(Configuration)' == 'Release'">
+    <Link>
+      <AdditionalDependencies>Win32\Bullet3Common.lib;Win32\BulletCollision.lib;Win32\BulletDynamics.lib;Win32\BulletInverseDynamics.lib;Win32\BulletSoftBody.lib;Win32\LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)' == 'Win32' And ('$(PlatformToolset)' == 'v142') And '$(Configuration)' == 'Debug'">
+    <Link>
+      <AdditionalDependencies>Win32\Bullet3Commond.lib;Win32\BulletCollisiond.lib;Win32\BulletDynamicsd.lib;Win32\BulletInverseDynamicsd.lib;Win32\BulletSoftBodyd.lib;Win32\LinearMathd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  <ItemDefinitionGroup Condition="'$(Platform)' == 'x64' And ('$(PlatformToolset)' == 'v142') And '$(Configuration)' == 'Release'">
+    <Link>
+      <AdditionalDependencies>x64\Bullet3Common.lib;x64\BulletCollision.lib;x64\BulletDynamics.lib;x64\BulletInverseDynamics.lib;x64\BulletSoftBody.lib;x64\LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>  
+  <ItemDefinitionGroup Condition="'$(Platform)' == 'x64' And ('$(PlatformToolset)' == 'v142') And '$(Configuration)' == 'Debug'">
+    <Link>
+      <AdditionalDependencies>x64\Bullet3Commond.lib;x64\BulletCollisiond.lib;x64\BulletDynamicsd.lib;x64\BulletInverseDynamicsd.lib;x64\BulletSoftBodyd.lib;x64\LinearMathd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>  
+</Project>

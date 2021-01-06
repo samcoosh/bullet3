@@ -1,0 +1,25 @@
+image:
+  - Visual Studio 2019
+      
+install:  
+  - git clone --depth 1 https://github.com/bulletphysics/bullet3.git
+
+before_build:
+- cmd: cmake -H.\bullet3 -G "Visual Studio 16 2019" -A Win32 -B./build_x86 -DCMAKE_INSTALL_PREFIX=./package_x86 -DUSE_GRAPHICAL_BENCHMARK="OFF" -DBUILD_OPENGL3_DEMOS="OFF" -DBUILD_CPU_DEMOS="OFF" -DBUILD_EXTRAS="OFF" -DCMAKE_DEBUG_POSTFIX="d" -DBUILD_UNIT_TESTS="OFF" -DBUILD_ENET="OFF" -DBUILD_CLSOCKET="OFF" -DBUILD_BULLET2_DEMOS="OFF" -DINSTALL_LIBS="ON" -DBUILD_BULLET3="OFF"
+- cmd: cmake -H.\bullet3 -G "Visual Studio 16 2019" -A x64 -B./build_x64 -DCMAKE_INSTALL_PREFIX=./package_x64 -DUSE_GRAPHICAL_BENCHMARK="OFF" -DBUILD_OPENGL3_DEMOS="OFF" -DBUILD_CPU_DEMOS="OFF" -DBUILD_EXTRAS="OFF" -DCMAKE_DEBUG_POSTFIX="d" -DBUILD_UNIT_TESTS="OFF" -DBUILD_ENET="OFF" -DBUILD_CLSOCKET="OFF" -DBUILD_BULLET2_DEMOS="OFF" -DINSTALL_LIBS="ON" -DBUILD_BULLET3="OFF"
+  
+build_script:
+- cmd: cmake --build build_x86 --target INSTALL --config Debug
+- cmd: cmake --build build_x64 --target INSTALL --config Debug
+- cmd: cmake --build build_x86 --target INSTALL --config Release
+- cmd: cmake --build build_x64 --target INSTALL --config Release
+  
+after_test:
+  - cmd: nuget pack -Version %APPVEYOR_BUILD_VERSION%
+  
+artifacts:
+  - path: '**\*.nupkg'
+  
+deploy:
+- provider: Environment
+  name: production

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>bullet3</id>
+    <version>1.0.0</version>
+    <authors>samcoosh</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Zlib</license>
+    <projectUrl>https://github.com/samcoosh/bullet3</projectUrl>
+    <description>Bullet Continuous Collision Detection and Physics Library</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>native,bullet3,C++,C</tags>
+	<repository type="git" url="https://github.com/samcoosh/bullet3" />
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="package.targets"          target="build\native\bullet3.targets" />  
+	<file src="package_x86\include\**\*.h" 	 target="build\native\include" />
+	
+	<file src="package_x86\lib\*.lib" target="build\native\lib\Win32" />
+	<file src="package_x64\lib\*.lib" target="build\native\lib\x64" />
+  </files>
+</package>
